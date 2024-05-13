@@ -58,6 +58,6 @@ Contributions are welcome! If you have any ideas, improvements, or bug fixes, fe
 
 ## Notes
 
-- For now and video is blinking, I will fix it Later
+- For now video is blinking, I will fix it Later
 
 Enjoy exploring the world of music videos in ASCII art!
