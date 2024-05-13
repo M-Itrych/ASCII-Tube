@@ -8,7 +8,7 @@ class MainMenu:
         self.mode = "normal"
         self.url = ""
         self.clear_screen()
-        print('Welcome to ASCII Video Player')
+        print('Welcome to ASCII Video Player by M-Itrych')
         self.show_menu()
 
     def clear_screen(self):
@@ -65,6 +65,9 @@ class MainMenu:
 
             vp = Vp(file)
             vp.play_video()
+
+            self.clear_screen()
+            self.show_menu()
         except Exception as e:
             print(f"Error occurred: {e}")
             self.show_menu()
