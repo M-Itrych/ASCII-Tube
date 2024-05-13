@@ -68,6 +68,3 @@ class MainMenu:
         except Exception as e:
             print(f"Error occurred: {e}")
             self.show_menu()
-
-if __name__ == "__main__":
-    MainMenu()
