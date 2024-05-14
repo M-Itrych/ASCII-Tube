@@ -3,6 +3,7 @@ from youtubesearchpython import VideosSearch
 from pytube import YouTube
 from src.VideoPlayer.Player import VideoPlayer as Vp
 
+
 class MainMenu:
     def __init__(self):
         self.mode = "normal"
@@ -19,6 +20,7 @@ class MainMenu:
         print(header)
 
     def show_menu(self):
+        print("\033[0m")
         print('\n--- Main Menu ---')
         print('1. Search for Music Videos')
         print('2. Exit')
@@ -63,6 +65,9 @@ class MainMenu:
         if os.path.exists("video.mp4"):
             os.remove("video.mp4")
 
+        if os.path.exists("music.wav"):
+            os.remove("music.wav")
+
         try:
             yt = YouTube(self.url)
             video = yt.streams.first()
@@ -76,6 +81,7 @@ class MainMenu:
         except Exception as e:
             print(f"Error occurred: {e}")
             self.show_menu()
+
 
 if __name__ == "__main__":
     MainMenu()
