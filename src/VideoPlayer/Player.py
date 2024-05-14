@@ -20,7 +20,6 @@ class VideoPlayer:
     def clear_console(self):
         print("\033[H\033[J", end="")
 
-
     def print_ascii_frame(self, ascii_frame):
         self.clear_console()
         sys.stdout.write(ascii_frame)
@@ -74,3 +73,10 @@ class VideoPlayer:
             if self.video:
                 self.video.close()
             pygame.mixer.music.stop()
+
+        pygame.mixer.music.fadeout(1000)
+        pygame.mixer.music.stop()
+        pygame.mixer.quit()
+        os.remove("music.wav")
+        os.remove("video.mp4")
+        pygame.quit()
