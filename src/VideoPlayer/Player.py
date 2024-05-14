@@ -35,7 +35,7 @@ class VideoPlayer:
 
         timer = f' {ct_mins:}:{ct_secs} / {mt_mins}:{mt_secs} '
         ac = int((self.tc - 2) * progress)
-        progress = f" \033[38;2;255;0;0m{'=' * ac }\033[38;2;255;255;255m "
+        progress = f" \033[38;2;255;0;0m{'=' * ac}\033[38;2;255;255;255m "
 
         return f"{progress} \n{timer}   ▶   ▶|"
 
@@ -59,13 +59,17 @@ class VideoPlayer:
                 self.stop_video = False
 
                 for frame_number, frame in enumerate(video.iter_frames(fps=self.target_fps, dtype='uint8'), 1):
-                    self.tc = os.get_terminal_size().columns
+                    if self.tc is not os.get_terminal_size().columns:
+                        self.clear_console()
+                        self.tc = os.get_terminal_size().columns
+
                     if self.stop_video:
                         break
 
                     ascii_frame = self.converter.generate_ascii_art(frame)
                     if frame_number % self.print_frequency == 0:
-                        self.ui_video(ascii_frame, progressbar=self.progress(time.time() - start_time, video.end), song_name=self.song_name)
+                        self.ui_video(ascii_frame, progressbar=self.progress(time.time() - start_time, video.end),
+                                      song_name=self.song_name)
 
                     elapsed_time = time.time() - start_time
                     target_time = frame_number * (1 / self.target_fps)
