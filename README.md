@@ -56,8 +56,4 @@ This Python script allows you to search for music videos on YouTube and play the
 ## Contributing
 Contributions are welcome! If you have any ideas, improvements, or bug fixes, feel free to open an issue or submit a pull request.
 
-## Notes
-
-- For now video is blinking, I will fix it Later
-
 Enjoy exploring the world of music videos in ASCII art!

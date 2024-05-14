@@ -8,18 +8,19 @@ class MainMenu:
     def __init__(self):
         self.mode = "normal"
         self.url = ""
+        self.song_title = ""
         self.clear_screen()
-        self.print_header()
         self.show_menu()
 
     def clear_screen(self):
         os.system('cls' if os.name == 'nt' else 'clear')
 
     def print_header(self):
-        header = """ASCII Video Player by M-Itrych"""
+        header = """ASCII Video Player \nby M-Itrych"""
         print(header)
 
     def show_menu(self):
+        self.print_header()
         print("\033[0m")
         print('\n--- Main Menu ---')
         print('1. Search for Music Videos')
@@ -52,6 +53,7 @@ class MainMenu:
             option = int(option)
             if 1 <= option <= len(music_list):
                 self.url = music_list[option - 1]['link']
+                self.song_title = music_list[option - 1]['title']
                 self.start_player()
             else:
                 print("Invalid choice. Please enter a number within the range.")
@@ -73,7 +75,7 @@ class MainMenu:
             video = yt.streams.first()
             file = video.download(filename="video.mp4")
 
-            vp = Vp(file)
+            vp = Vp(file, song_name=self.song_title)
             vp.play_video()
 
             self.clear_screen()
