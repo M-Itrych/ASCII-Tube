@@ -8,15 +8,19 @@ class MainMenu:
         self.mode = "normal"
         self.url = ""
         self.clear_screen()
-        print('Welcome to ASCII Video Player by M-Itrych')
+        self.print_header()
         self.show_menu()
 
     def clear_screen(self):
         os.system('cls' if os.name == 'nt' else 'clear')
 
+    def print_header(self):
+        header = """ASCII Video Player by M-Itrych"""
+        print(header)
+
     def show_menu(self):
-        print('What do you want to do?')
-        print('1. Search Music')
+        print('\n--- Main Menu ---')
+        print('1. Search for Music Videos')
         print('2. Exit')
         option = input('Enter your choice: ')
         if option == '1':
@@ -24,7 +28,7 @@ class MainMenu:
         elif option == '2':
             exit()
         else:
-            print("Invalid choice. Please try again.")
+            print("Invalid choice. Please enter 1 or 2.")
             self.show_menu()
 
     def search_music(self):
@@ -37,6 +41,7 @@ class MainMenu:
             self.show_menu()
             return
 
+        print('\n--- Search Results ---')
         for i, music in enumerate(music_list):
             print(f'{i + 1}. {music["title"]}')
 
@@ -71,3 +76,6 @@ class MainMenu:
         except Exception as e:
             print(f"Error occurred: {e}")
             self.show_menu()
+
+if __name__ == "__main__":
+    MainMenu()

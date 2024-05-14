@@ -9,7 +9,7 @@ class ImageConverter:
         self.lines = None
         self.width = None
         self.height = None
-        self.chars = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\\|()1{}[]?-_+~<>i!lI;:,\"^`'. "[::-1]
+        self.chars = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/|()1{}[]?-_+~<>i!lI;:,^`'. "[::-1]
         self.charArray = list(self.chars)
         self.charLength = len(self.charArray)
         self.interval = self.charLength / 256

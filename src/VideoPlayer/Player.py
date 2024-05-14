@@ -48,7 +48,6 @@ class VideoPlayer:
                         if self.stop_video:
                             break
 
-                        # Compare current frame with the last frame
                         if frame_number > 1 and (frame == last_frame).all():
                             continue
 
@@ -56,7 +55,7 @@ class VideoPlayer:
                         if frame_number % self.print_frequency == 0:
                             self.print_ascii_frame(ascii_frame)
 
-                        last_frame = frame  # Update last frame
+                        last_frame = frame
 
                         elapsed_time = time.time() - start_time
                         target_time = frame_number * (1 / self.target_fps)
@@ -64,19 +63,14 @@ class VideoPlayer:
                         if time_to_wait > 0:
                             time.sleep(time_to_wait)
 
-                display_thread = threading.Thread(target=display_frames)
-                display_thread.start()
+                display_frames()
 
-                while display_thread.is_alive():
-                    key = cv2.waitKey(1)
-                    if key & 0xFF == ord('q'):
-                        self.stop_video = True
-                        break
-
-                display_thread.join()
+        except KeyboardInterrupt:
+            if self.video:
+                self.video.close()
+            pygame.mixer.music.stop()
 
         finally:
             if self.video:
                 self.video.close()
-            cv2.destroyAllWindows()
             pygame.mixer.music.stop()
