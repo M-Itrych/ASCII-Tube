@@ -112,7 +112,7 @@ class MainMenu:
                     search_query += key
 
                 print("\033[H\n" + headString + search_query + " " * (
-                        self.terminal_width - len(search_query) - len(headString) - 1) + "|", end="\n")
+                        self.terminal_width - len(search_query) - len(headString) - 1) + "|")
 
         music_list = VideosSearch(search_query, limit=5).result().get('result', [])
         if not music_list:
@@ -120,7 +120,6 @@ class MainMenu:
             self.show_menu()
             return
 
-        print("")
         pattern = re.compile("["
                              u"\U0001F600-\U0001F64F"
                              u"\U0001F300-\U0001F5FF"
@@ -136,12 +135,12 @@ class MainMenu:
                              "]+", flags=re.UNICODE)
 
         padding = "|" + " " * (len(name) + 2) + "|"
+        print("\n", end="")
         for i, music in enumerate(music_list):
             m_index = " " + str(i + 1) + ". "
             max_length = self.terminal_width - (len(padding) + len(m_index)) - 1
-            print(padding + m_index + pattern.sub('', music['title'][:max_length]) + " " * (
-                    max_length - len(music['title'])) + "|",
-                  end="\n")
+            print("\n" + padding + m_index + pattern.sub('', music['title'][:max_length]) + " " * (
+                    max_length - len(music['title'])) + "|", end="")
 
         choosestr = padding + " Choose a song:"
         print("|" + "=" * (self.terminal_width - 2) + "|")
@@ -161,7 +160,6 @@ class MainMenu:
 
                 print("\33[H" + "\n" * (4 + len(music_list)) + padding + " Choose a song: " + choice + " " * (
                         self.terminal_width - len(choice) - len(choosestr) - 1) + "|")
-
 
         choice = int(choice)
         self.url = music_list[choice - 1]['link']
