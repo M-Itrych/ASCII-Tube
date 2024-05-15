@@ -2,6 +2,9 @@
 
 This Python script allows you to search for music videos on YouTube and play them in ASCII art form. 
 
+## Demo
+Check out this short video to see the program in action: [ASCII Tube Demo](https://youtu.be/HZ5kZ6KhAP4)
+
 ## Requirements
 
 - Python 3.x
