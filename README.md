@@ -1,6 +1,6 @@
-# ASCII Video Player
+# ASCII Tube
 
-This Python script allows you to search for music videos on YouTube and play them in ASCII art form. It utilizes various libraries such as `pytube`, `youtubesearchpython`, `moviepy`, `pygame`, and `opencv`.
+This Python script allows you to search for music videos on YouTube and play them in ASCII art form. 
 
 ## Requirements
 
