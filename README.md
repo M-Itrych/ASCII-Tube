@@ -48,7 +48,6 @@ Check out this short video to see the program in action: [ASCII Tube Demo](https
 
 - Search for music videos by title.
 - Play selected music videos in ASCII art form.
-- Stop video playback by pressing 'q'.
 
 ## File Structure
 
