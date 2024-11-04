@@ -2,7 +2,7 @@ import os
 import re
 
 from youtubesearchpython import VideosSearch
-from pytube import YouTube
+from yt_dlp import YoutubeDL
 from src.VideoPlayer.Player import VideoPlayer as Vp
 import msvcrt
 
@@ -175,11 +175,13 @@ class MainMenu:
             os.remove("music.wav")
 
         try:
-            yt = YouTube(self.url)
-            video = yt.streams.first()
-            file = video.download(filename="video.mp4")
+            ydl_opts = {
+                'outtmpl': 'video.mp4',  # Output filename
+            }
+            with YoutubeDL(ydl_opts) as ydl:
+                ydl.download([self.url])  # Download the video
 
-            vp = Vp(file, song_name=self.song_title)
+            vp = Vp("video.mp4", song_name=self.song_title)  # Use the downloaded file
             vp.play_video()
 
             self.clear_screen()
